@@ -1,13 +1,33 @@
-import { Client, Events, GatewayIntentBits } from "discord.js";
+import { Client, Collection, Events, GatewayIntentBits } from "discord.js";
+import { Command } from "./types/command";
+import { onCreateInteraction, onReadyClient } from "./listeners";
+import commands from "./commands/commands";
 
-const discordClient = new Client({ intents: [GatewayIntentBits.Guilds] });
+declare module "discord.js" {
+    interface Client {
+        commands: Collection<string, Command>;
+    }
+};
 
-discordClient.once(Events.ClientReady, onReadyClient);
+function main(): void {
+    const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+    client.commands = new Collection();
 
-discordClient.login(process.env.DISCORD_TOKEN).catch((error) => {
-    console.error("Failed to login to Discord: ", error);
-});
+    registerCommands(client);
+    registerEventsListeners(client);
 
-function onReadyClient(client: Client): void {
-    console.log(`Ready! Logged in as ${client.user?.tag}`);
+    client.login(process.env.DISCORD_TOKEN).catch((error) => {
+        console.error("Failed to login to Discord: ", error);
+    });
 }
+
+function registerEventsListeners(client: Client): void {
+    client.once(Events.ClientReady, onReadyClient);
+    client.on(Events.InteractionCreate, onCreateInteraction);
+}
+
+function registerCommands(client: Client): void {
+    commands.forEach(command => client.commands.set(command.data.name, command));
+}
+
+main();
