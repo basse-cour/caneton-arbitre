@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - JMT-WIP-test-gh-actions
+      - main
 
 jobs:
   release:
@@ -16,13 +16,13 @@ jobs:
     - name: Checkout docker project
       uses: actions/checkout@v2
       with:
-        repository: https://github.com/basse-cour/node-js-docker-build
+        repository: basse-cour/node-js-docker-build
         path: docker
 
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        repository: https://github.com/basse-cour/caneton-arbitre
+        repository: basse-cour/caneton-arbitre
         path: docker/bot
 
     - name: Set up Docker Buildx
