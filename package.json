@@ -15,7 +15,7 @@
   "type": "commonjs",
   "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "dotenvx run -q -f .env.local -f .env -- node dist/index.js",
     "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +24,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.40.0",
     "discord.js": "^14.18.0"
   }
 }
