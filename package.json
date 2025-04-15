@@ -15,12 +15,17 @@
   "type": "commonjs",
   "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "dotenvx run -q -f .env.local -f .env -- node dist/index.js",
+    "deploy-commands": "dotenvx run -q -f .env.local -f .env -- node dist/scripts/deploy-commands.js",
     "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
     "@types/node": "^22.14.1",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.40.0",
+    "discord.js": "^14.18.0"
   }
 }
