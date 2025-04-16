@@ -14,6 +14,7 @@ export default defineConfig([
     extends: ["js/recommended"],
     rules: {
       indent: ["warn", 2],
+      "eol-last": ["error", "always"],
     },
   },
   {
