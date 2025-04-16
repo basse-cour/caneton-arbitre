@@ -2,6 +2,9 @@ import { Client, Collection, Events, GatewayIntentBits } from "discord.js";
 import { Command } from "./types/command";
 import { onCreateInteraction, onReadyClient } from "./listeners";
 import commands from "./commands/commands";
+import { Logger } from "./tools/logger.tool";
+
+const logger = new Logger("Main");
 
 declare module "discord.js" {
     interface Client {
@@ -17,7 +20,7 @@ function main(): void {
   registerEventsListeners(client);
 
   client.login(process.env.DISCORD_TOKEN).catch((error) => {
-    console.error("Failed to login to Discord: ", error);
+    logger.error("Failed to login to Discord: ", error);
   });
 }
 

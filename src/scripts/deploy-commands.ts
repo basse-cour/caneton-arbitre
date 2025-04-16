@@ -1,5 +1,8 @@
 import { REST, Routes } from "discord.js";
 import commandList from "../commands/commands";
+import { Logger } from "../tools/logger.tool";
+
+const logger = new Logger("scripts/deploy-commands");
 
 async function deployCommands() {
   const token = process.env.DISCORD_TOKEN;
@@ -21,7 +24,7 @@ async function deployCommands() {
   const commands = commandList.map(command => command.data.toJSON());
 
   try {
-    console.log(`Started refreshing ${commands.length} application (/) commands.`);
+    logger.log(`Started refreshing ${commands.length} application (/) commands.`);
 
     const data = await rest.put(
       Routes.applicationGuildCommands(applicationClientId, guildId),
@@ -29,13 +32,13 @@ async function deployCommands() {
     );
 
     if(Array.isArray(data)) {
-      console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+      logger.log(`Successfully reloaded ${data.length} application (/) commands.`);
     } else {
-      console.warn("Request was successful, but we expected Discord to return an array. Got:\n" + data);
+      logger.warn("Request was successful, but we expected Discord to return an array. Got:\n" + data);
     }
   } catch (error) {
     console.error(error);
   }
 }
 
-deployCommands().then(() => console.log("Commands deployed successfully"));
+deployCommands().then(() => logger.log("Commands deployed successfully"));

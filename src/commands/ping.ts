@@ -7,7 +7,6 @@ const data = new SlashCommandBuilder()
 ;
 
 async function execute(interaction: ChatInputCommandInteraction): Promise<void> {
-  
   await interaction.reply('Pong!');
 }
 
