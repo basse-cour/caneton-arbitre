@@ -7,7 +7,7 @@ import chalk from 'chalk';
 /**
  * Define the available log levels in the application.
  */
-export type LogLevel = 'log' | 'error' | 'warn' | 'debug' | 'verbose' | 'fatal';
+export type LogLevel = 'verbose' | 'debug' | 'log' | 'warn' | 'error' | 'fatal';
 
 /**
  * Logger class for managing and formatting log messages with different levels of severity.
