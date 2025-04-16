@@ -2,7 +2,7 @@ import { Command } from "../types/command";
 import ping from "./ping";
 
 const commands: Command[] = [
-    ping,
+  ping,
 ];
 
 export default commands;
