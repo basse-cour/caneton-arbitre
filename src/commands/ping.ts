@@ -7,7 +7,7 @@ const data = new SlashCommandBuilder()
 ;
 
 async function execute(interaction: ChatInputCommandInteraction): Promise<void> {
-  //TODO strongly type interaction
+  
   await interaction.reply('Pong!');
 }
 
