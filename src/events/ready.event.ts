@@ -2,7 +2,7 @@
 
 /* ===== Required modules ===== */
 import { Client } from 'discord.js';
-import { Logger } from '../tools/logger.tool';
+import { Logger } from '../utils/logger.util';
 
 /**
  * Event handler for the 'ready' event.
@@ -20,6 +20,6 @@ export const event = {
   once: true,
   execute(client: Client) {
     const logger = new Logger('Ready');
-    logger.log(`Bot connecté en tant que ${client.user?.tag}`);
+    logger.log(`Ready! Logged in as ${client.user?.tag}`);
   },
 };

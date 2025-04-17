@@ -23,22 +23,22 @@ async function deployCommands() {
 
   const commands = commandList.map(command => command.data.toJSON());
 
-  try {
-    logger.log(`Started refreshing ${commands.length} application (/) commands.`);
+    try {
+        console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
     const data = await rest.put(
       Routes.applicationGuildCommands(applicationClientId, guildId),
       { body: commands },
     );
 
-    if(Array.isArray(data)) {
-      logger.log(`Successfully reloaded ${data.length} application (/) commands.`);
-    } else {
-      logger.warn("Request was successful, but we expected Discord to return an array. Got:\n" + data);
+        if(Array.isArray(data)) {
+            console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+        } else {
+            console.warn("Request was successful, but we expected Discord to return an array. Got:\n" + data);
+        }
+    } catch (error) {
+        console.error(error);
     }
-  } catch (error) {
-    console.error(error);
-  }
 }
 
 deployCommands().then(() => logger.log("Commands deployed successfully"));
