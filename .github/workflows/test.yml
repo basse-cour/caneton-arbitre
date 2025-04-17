@@ -37,10 +37,10 @@ jobs:
         env:
           SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
         run: |
-          npx eslint .
-          --config eslint.config.mjs
-          --format json
-          --output-file eslint_report.json
+          npx eslint . \
+          --config eslint.config.mjs \
+          --format json \
+          --output-file eslint_report.json \
           --max-warnings 0
         continue-on-error: true
 
