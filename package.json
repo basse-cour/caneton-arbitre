@@ -16,7 +16,9 @@
   "main": "dist/index.js",
   "watch": {
     "build-start": {
-      "patterns": ["src"],
+      "patterns": [
+        "src"
+      ],
       "extensions": "js,mjs,cjs,ts"
     }
   },
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.24.0",
+    "@microsoft/eslint-formatter-sarif": "^3.1.0",
     "@types/node": "^22.14.1",
     "eslint": "^9.24.0",
     "globals": "^16.0.0",
