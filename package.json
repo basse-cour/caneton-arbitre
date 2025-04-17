@@ -16,7 +16,9 @@
   "main": "dist/index.js",
   "watch": {
     "build-start": {
-      "patterns": ["src"],
+      "patterns": [
+        "src"
+      ],
       "extensions": "js,mjs,cjs,ts"
     }
   },
