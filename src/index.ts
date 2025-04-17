@@ -1,14 +1,15 @@
 import { Client, Collection, Events, GatewayIntentBits } from "discord.js";
-import { Command } from "./types/command";
-import { onCreateInteraction, onReadyClient } from "./listeners";
-import commands from "./commands/commands";
-import { Logger } from "./tools/logger.tool";
+import { CommandType } from "./types/command.type";
+import commands from "./constants/commands.constant";
+import { Logger } from "./utils/logger.util";
+import onReadyClient from "./events/onReadyClient.event";
+import onCreateInteraction from "./events/onCreateInteraction.event";
 
 const logger = new Logger("Main");
 
 declare module "discord.js" {
     interface Client {
-        commands: Collection<string, Command>;
+        commands: Collection<string, CommandType>;
     }
 };
 

@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
-import { Command } from "../types/command";
+import { CommandType } from "../types/command.type";
 
 const data = new SlashCommandBuilder()
   .setName('ping')
@@ -10,6 +10,6 @@ async function execute(interaction: ChatInputCommandInteraction): Promise<void> 
   await interaction.reply('Pong!');
 }
 
-const command: Command = { data, execute };
+const command: CommandType = { data, execute };
 
 export default command;
